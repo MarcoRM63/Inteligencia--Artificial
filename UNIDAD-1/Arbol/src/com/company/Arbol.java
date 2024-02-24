@@ -1,12 +1,7 @@
 package com.company;
-/*ESTRUCTURA DE DATOS: Clase arbol
+/* Clase arbol
 (Ahora adaptado para la materia de IA)
- * Integrantes:
- * -Beltran Heras Oscar
- * -Plata Angulo Rafael
- * -Rojo Medina Marco Cesar
- * -Vazquez Torres Ana Jasmin
- * -Vega Gonzales Jesus Antonio
+
  * NOTA: eliminar package com.company al momento de compilar, se coloca por el IDE usado.
  * */
 public class Arbol {
