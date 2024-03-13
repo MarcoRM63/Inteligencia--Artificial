@@ -8,8 +8,8 @@ public class Main {
     public static void main(String[] args) {
 
 
-        EightPuzzle e = new EightPuzzle(new Nodo(HARD), GOAL_STATE);
+        EightPuzzle e = new EightPuzzle(new Nodo(EASY), GOAL_STATE);
      //   e.busquedaPorAnchura();
-        e.busquedaPorProfundidad();
+        e.busquedaAestrella();
     }
 }

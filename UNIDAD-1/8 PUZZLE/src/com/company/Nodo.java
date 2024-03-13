@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Nodo {
     private Nodo padre;
     private String valor;
+    private  int costo;
     final static String[] MOVIMIENTO = {"13", "024", "15", "045", "1357", "248", "37", "468", "57"};
 
     public Nodo(String valor) {
@@ -19,6 +20,14 @@ public class Nodo {
 
     public Nodo getPadre() {
         return this.padre;
+    }
+
+    public int getCosto() {
+        return costo;
+    }
+
+    public void setCosto(int costo) {
+        this.costo = costo;
     }
 
     public String getValor() {
