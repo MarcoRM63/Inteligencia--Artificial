@@ -1,0 +1,3 @@
+java -jar jfuzzylogic.jar -e riegoDifuso.fcl 2 2 8
+
+primer 

@@ -1,0 +1,53 @@
+FUNCTION_BLOCK riego
+    VAR_INPUT
+        temp:REAL;
+        hum:REAL;
+        dt:REAL;
+    END_VAR
+    VAR_OUTPUT
+        cantRiego:REAL;
+    END_VAR
+
+    FUZZIFY temp
+        TERM frio:=(0,1) (12,1) (19,0);
+        TERM templado:= (10,0) (20,1) (25,1) (30,0);
+        TERM Caliente:= (22,0) (30,1) (60,1);
+    END_FUZZIFY
+
+     FUZZIFY hum
+        TERM seco:=(0,1) (22,1) (25,0);
+        TERM humedo:= (25,0) (30,1) (50,1) (52,0);
+        TERM muyhumedo:= (52,0) (53,1) (100,1);
+     END_FUZZIFY
+
+      FUZZIFY dt
+            TERM constante:= (0,1) (1,1)  (3,1) (3,0);
+            TERM moderado:=(3,0) (4,1) (6,0);
+            TERM poco:= (6,0) (9,1) (14,1);
+      END_FUZZIFY
+
+         DEFUZZIFY cantRiego
+                  TERM muypoco:=(0,0) (5,1) (15,1) (22,0);
+                  TERM poco:= (11,0) (20,1) (33,1) (45,0);
+                  TERM moderado:=(28,0) (45,1) (54,1) (62,0);
+                  TERM abundante:= (51,0) (62,1) (100,1);
+                  METHOD:COG;
+                  DEFAULT:=0;
+
+
+            END_DEFUZZIFY
+
+        RULEBLOCK reglasriego
+        RULE 1: IF(temp IS frio) AND (hum IS seco) AND (dt IS poco) THEN cantRiego IS poco;
+		RULE 2: IF(temp IS templado) AND (hum IS humedo) AND (dt IS poco) THEN cantRiego IS poco;
+        RULE 3: IF(temp IS Caliente) AND (hum IS seco) AND (dt IS poco) THEN cantRiego IS muypoco;
+        RULE 4: IF(temp IS frio) AND (hum IS muyhumedo) AND (dt IS moderado) THEN cantRiego IS moderado;
+        RULE 5: IF(temp IS templado) AND (hum IS humedo) AND (dt IS moderado) THEN cantRiego IS moderado;
+        RULE 6: IF(temp IS Caliente) AND (hum IS seco) AND (dt IS constante) THEN cantRiego IS abundante;
+        RULE 6: IF(temp IS Caliente) AND (hum IS muyhumedo) AND (dt IS constante) THEN cantRiego IS abundante;
+        RULE 7: IF(temp IS frio) AND (hum IS seco) AND (dt IS poco) THEN cantRiego IS muypoco;
+        RULE 8: IF(temp IS templado) AND (hum IS muyhumedo) AND (dt IS poco) THEN cantRiego IS moderado;
+        RULE 9: IF(temp IS Caliente) AND (hum IS humedo) AND (dt IS poco) THEN cantRiego IS moderado;
+        RULE 10: IF(temp IS frio) AND (hum IS humedo) AND (dt IS moderado) THEN cantRiego IS poco;
+        END_RULEBLOCK
+END_FUNCTION_BLOCK

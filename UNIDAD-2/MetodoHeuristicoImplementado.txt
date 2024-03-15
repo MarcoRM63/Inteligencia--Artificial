@@ -1,0 +1,20 @@
+/*Metodo heuristico para determinar el costo de un movimiento en 8 PUZZLE
+*   Lo que hace es contar el numero de intercambios que se tienen que hacer
+*   para tener ordenado el tablero. Lo que hace es comparar el valor actual
+*   con la posicion siguiente, y si el actual es mayor que el valor siguiente entonces
+*   se incrementa el costo en 1. Se omite el 0 o el caracter '_' en este caso si este se encuentra en
+*   la posicion actual o en la siguiente*/
+    private static int contarOrdenados(Nodo actual) {
+        int costo = 0;
+        String valor = actual.getValor();
+
+        for (int i = 0; i < 9 - 1; i++) {
+            for (int j = i + 1; j < 9; j++) {
+                if (valor.charAt(i) > valor.charAt(j) && valor.charAt(i) != '_' && valor.charAt(j) != '_') {
+                    costo++;
+                }
+            }
+        }
+
+        return costo;
+    }
