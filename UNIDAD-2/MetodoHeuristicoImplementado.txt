@@ -18,3 +18,5 @@
 
         return costo;
     }
+
+/*Este metodo esta implementado con el algoritmo a* */
